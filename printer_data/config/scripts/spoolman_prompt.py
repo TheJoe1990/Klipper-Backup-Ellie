@@ -63,7 +63,7 @@ def main():
     if not spools:
         lines.append("prompt_text There are no spools in Spoolman yet. Add them in the Spoolman page in Home Assistant.")
     else:
-        lines.append("prompt_text Tap the spool now in the printer so Spoolman can track how much is left.")
+        lines.append("prompt_text Tap the spool that is now in the printer so Spoolman can track how much is left.")
         for sp in spools[:MAX_BUTTONS]:
             color = "primary" if sp["id"] == active else "secondary"
             lines.append("prompt_button %s|_SPOOL_PICK ID=%d|%s" % (label(sp), sp["id"], color))
