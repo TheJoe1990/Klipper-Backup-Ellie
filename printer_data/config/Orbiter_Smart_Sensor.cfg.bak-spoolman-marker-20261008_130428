@@ -160,11 +160,6 @@ gcode:
 
     M118 O2S: Loading filament...
 
-    # 2026-10-08 (user): open the spool picker RIGHT AWAY when load is pressed, not after loading.
-    # Patched Mainsail opens its Change Spool window on this console marker while Klipper keeps
-    # heating + loading. Replaces the _SPOOL_PROMPT list that used to run at the end.
-    RESPOND MSG="Spoolman: pick or add the spool you are loading [[spoolman-open]]"
-
     # Heat if needed (original behavior)
     {% if (printer.extruder.can_extrude|lower != 'true') or (printer.extruder.target < sensor.filament_load_min_temp) %}
       SET_HEATER_TEMPERATURE HEATER=extruder TARGET={sensor.filament_load_temp}
@@ -242,8 +237,7 @@ gcode:
     UPDATE_DELAYED_GCODE ID=clear_loadbusy DURATION=2
 
     # 2026-10-08: ask which Spoolman spool was just loaded (Spoolman.cfg)
-    # replaced the same day by the [[spoolman-open]] marker at the top of this macro
-    #_SPOOL_PROMPT
+    _SPOOL_PROMPT
 
  
 
